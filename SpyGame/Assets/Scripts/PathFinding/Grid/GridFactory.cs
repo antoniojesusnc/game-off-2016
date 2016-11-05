@@ -57,6 +57,13 @@ public class GridFactory : MonoBehaviour
         }
     } // GenerateGrid
 
+    // gets & sets
+
+    public Grid getGrid()
+    {
+        return _grid;
+    } // getGrid
+
     /// <summary>
     /// Method for show the grid in the sceneMode
     /// </summary>

@@ -11,6 +11,8 @@ public class Grid
     float _nodeSize;
     static Vector3 _worldBottomLeft;
 
+
+
     public Grid(Vector2 gridSize, float nodeSize, Vector3 originPoint)
     {
         _gridSize = gridSize;
