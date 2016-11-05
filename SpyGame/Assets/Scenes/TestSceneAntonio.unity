@@ -101,7 +101,7 @@ GameObject:
   - 33: {fileID: 4798965}
   - 65: {fileID: 4798964}
   - 23: {fileID: 4798963}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 48071150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - 33: {fileID: 65753053}
   - 65: {fileID: 65753052}
   - 23: {fileID: 65753051}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,6 +289,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 65753049}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &93301633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 93301634}
+  m_Layer: 0
+  m_Name: DEBUG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &93301634
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 93301633}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.499367, y: -0.63951397, z: -1.6465044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1987615577}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &458980501
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +398,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 458980501}
-  m_LocalRotation: {x: 0.4663767, y: -0, z: -0, w: 0.88458616}
+  m_LocalRotation: {x: 0.46637672, y: -0, z: -0, w: 0.8845862}
   m_LocalPosition: {x: -0.6, y: 17.2, z: -18.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 55.588, y: 0, z: 0}
@@ -387,7 +416,7 @@ GameObject:
   - 33: {fileID: 712229867}
   - 65: {fileID: 712229866}
   - 23: {fileID: 712229865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCorridor07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +495,7 @@ GameObject:
   - 33: {fileID: 720640797}
   - 65: {fileID: 720640796}
   - 23: {fileID: 720640795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BotWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,7 +653,7 @@ GameObject:
   - 33: {fileID: 929304495}
   - 65: {fileID: 929304494}
   - 23: {fileID: 929304493}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCorridor08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +732,7 @@ GameObject:
   - 33: {fileID: 1043375602}
   - 65: {fileID: 1043375601}
   - 23: {fileID: 1043375600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiddleWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +746,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1043375598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: 1.45, z: -11.2}
+  m_LocalPosition: {x: 15, y: 1.57, z: -11.2}
   m_LocalScale: {x: 8, y: 2, z: 8}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -924,7 +953,7 @@ GameObject:
   - 33: {fileID: 1313545351}
   - 65: {fileID: 1313545350}
   - 23: {fileID: 1313545349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCorridor05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1003,7 +1032,7 @@ GameObject:
   - 33: {fileID: 1497717690}
   - 65: {fileID: 1497717689}
   - 23: {fileID: 1497717688}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCorridor04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1082,7 +1111,7 @@ GameObject:
   - 33: {fileID: 1527875797}
   - 65: {fileID: 1527875796}
   - 23: {fileID: 1527875795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TopWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1161,7 +1190,7 @@ GameObject:
   - 33: {fileID: 1723438552}
   - 65: {fileID: 1723438551}
   - 23: {fileID: 1723438550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCorridor02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1269,7 @@ GameObject:
   - 33: {fileID: 1839056774}
   - 65: {fileID: 1839056773}
   - 23: {fileID: 1839056772}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCorridor03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1319,7 +1348,7 @@ GameObject:
   - 33: {fileID: 1879061128}
   - 65: {fileID: 1879061127}
   - 23: {fileID: 1879061126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCorridor01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1428,7 +1457,7 @@ GameObject:
   - 33: {fileID: 1978648585}
   - 65: {fileID: 1978648584}
   - 23: {fileID: 1978648583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCorridor06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1496,3 +1525,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1978648581}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1987615576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1987615577}
+  - 114: {fileID: 1987615578}
+  m_Layer: 0
+  m_Name: DebugGrid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1987615577
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1987615576}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.65, y: 1.61, z: -9.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 93301634}
+  m_RootOrder: 0
+--- !u!114 &1987615578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1987615576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950933be493be104e931d4ed2dabf778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unwalkableMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _gridContainer: {x: 51.92, y: 20.6}
+  _nodeSize: 0.5
+  _timeStampTimeToUpdate: 1
