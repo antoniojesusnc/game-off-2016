@@ -15,14 +15,15 @@ public class DebugCone : MonoBehaviour
     {
 
         if ( ( Mathf.FloorToInt(Time.timeSinceLevelLoad % 2) == 0 ) ){
-            if (!check ||  Input.GetKeyUp(KeyCode.A))
-        {
+            if (!check || Input.GetKeyUp(KeyCode.A))
+            {
                 check = true;
-            if (Utils.Math.isInsideCone(_cone, transform.position, transform.forward, _objetive.position))
-                Debug.Log("inside");
-            else
-                Debug.Log("outside");
-        }
+                if (_objetive != null)
+                {
+                    if (Utils.Math.isInsideCone(_cone, transform.position, transform.forward, _objetive.position))
+                        Debug.Log("Player Detected");
+                }
+            }
         } else
         {
             check = false;

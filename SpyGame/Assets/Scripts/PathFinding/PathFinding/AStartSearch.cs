@@ -76,6 +76,8 @@ public class AStartSearch : MonoBehaviour {
         return path;
     } // Search
 
+
+    // !!!TODO: working in A* improvements
     public static List<Vector2> Search2(Grid grid, Vector2 origin, Vector2 destiny)
     {
         List<Vector2> result = new List<Vector2>();

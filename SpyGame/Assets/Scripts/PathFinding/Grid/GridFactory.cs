@@ -61,6 +61,8 @@ public class GridFactory : MonoBehaviour
 
     public Grid getGrid()
     {
+        if (_grid == null)
+            CreateGrid();
         return _grid;
     } // getGrid
 

@@ -35,5 +35,16 @@ namespace Utils {
 
             return false;
         } // isInsideCone
+
+        public static float DistanceSqr(Vector3 v1, Vector3 v2)
+        {
+            return ( v2.x - v1.x ) * ( v2.x - v1.x ) + ( v2.y - v1.y ) * ( v2.y - v1.y );
+        }
+
+        public static float Distance(Vector3 v1, Vector3 v2)
+        {
+            return (float)System.Math.Sqrt(DistanceSqr(v1, v2));
+        }
+
     } // Math
 }

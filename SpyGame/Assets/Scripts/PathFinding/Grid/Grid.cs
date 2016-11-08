@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+[Serializable]
 public class Grid
 {    
     HashSet<Vector2> _blockNodes;
 
     Vector2 _gridSize;
     float _nodeSize;
-    static Vector3 _worldBottomLeft;
+    Vector3 _worldBottomLeft;
 
 
 

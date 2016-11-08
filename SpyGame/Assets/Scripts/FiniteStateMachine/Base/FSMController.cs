@@ -9,13 +9,21 @@ namespace FiniteStateMachine {
         protected List<FSMState> _states;
 
         // current state
-        FSMState _currentState;
-        List<FSMTransition> _currentStateTran;
+        protected FSMState _currentState;
+        protected List<FSMTransition> _currentStateTran;
 
-        void Start()
+        public virtual void Init()
         {
             ConstructFSM();
-        }
+            if (_currentState == null && _states.Count > 0)
+                _currentState = _states[0];
+
+            if (_currentState != null)
+            {
+                _currentState.OnStart();
+                _currentStateTran = _currentState.GetTransitions();
+            }
+        } // Start
 
         public abstract void ConstructFSM();
 
@@ -27,7 +35,7 @@ namespace FiniteStateMachine {
         {
             _currentState.Update(dt);
 
-            for (int i = _currentStateTran.Count; i >= 0; --i) {
+            for (int i = _currentStateTran.Count-1; i >= 0; --i) {
                 if (_currentStateTran[i].CanNextState()) {
                     ChageState( _currentStateTran[i].GetNextState() );
                     return;
