@@ -7,22 +7,15 @@
 	public class PlayerControlledBrain : Brain
 	{
 
-		public int PlayerNumber;
-
-		private string _movementAxisName;
-
-		private string _turnAxisName;
-
-
-		public void OnEnable()
-		{
-			_movementAxisName = "Vertical";
-			_turnAxisName     = "Horizontal";
-		}
-
 		public override void Think(Thinker thinker)
 		{			
-			/// !!!TODO: implement me
+			float inputX = Input.GetAxisRaw ("Vertical");
+			float inputY = Input.GetAxisRaw ("Horizontal");
+
+			Vector3 direction = new Vector3 (inputX, 0, inputY).normalized;
+
+			var movement = thinker.GetComponent<PlayerMovement>();
+			movement.Steer(direction);
 		}
 	}
 }
