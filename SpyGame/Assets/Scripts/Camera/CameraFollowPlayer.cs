@@ -3,46 +3,66 @@ using System.Collections;
 
 public class CameraFollowPlayer : MonoBehaviour
 {
-
+    public enum Axis
+    {
+        X,
+        Y,
+    }
     /// <summary>
     /// The camera dont move until the player go to the viewportborder, 
     /// when this happen the camera will move until the player in in the middle scren again;
     /// 
     /// The default Pos is some angle and distance from the player
     /// </summary>
-    
+
     [Header("Camera Standard Properties")]
     public float _cameraAngle;
     public float _cameraDefaultDistance;
     public Vector3 _cameraOffset;
 
     [Header("Camera Configuration")]
-    public float _timeToSetInMiddle;
+    public float _timeInertia;
 
     [Range(0, 1)]
     public float _viewportBorderX;
     [Range(0, 1)]
     public float _viewportBorderY;
 
-    private Transform _mainPlayer;
+    private Transform _player;
     private Camera _camera;
     private Vector3 _viewportPlayerPos;
 
-    private float _timeStamp;
-    private bool _settingPlayerToMiddle = false;
-    private Vector3 _originalCameraPosition;
-    private Vector3 _destinyCameraPosition;
+    private Vector3 _cameraSpeed;
+    private Vector3 _playerSpeed;
 
-    // Use this for initialization
+
+    private Vector3 _debugPlayerPosition;
+    private Vector3 _debugPlayerSpeedNormalized;
+
+    // inertia Var
+    private bool[] _doingInertia;
+    private float[] _inertiaTimeStamp;
+    private float[] _initialInerciaSpeed;
+
     void Start()
     {
-        _mainPlayer = GameObject.FindWithTag("Player").transform;
+        Init();
+    } // Start
+
+    private void Init()
+    {
+        _player = GameObject.FindWithTag("Player").transform;
 
         _camera = Camera.main;
 
         _camera.transform.rotation = CalulateStandardCameraRotation();
         _camera.transform.position = CalulateStandardCameraPosition();
-    } // Start
+
+        // init inertia vars
+        _doingInertia = new bool[2];
+        _inertiaTimeStamp = new float[2];
+        _initialInerciaSpeed = new float[2];
+    } // Init
 
     public Quaternion CalulateStandardCameraRotation()
     {
@@ -51,56 +71,140 @@ public class CameraFollowPlayer : MonoBehaviour
 
     public Vector3 CalulateStandardCameraPosition()
     {
-        Vector3 result = _mainPlayer.transform.position - _camera.transform.forward * _cameraDefaultDistance;
+        Vector3 result = _player.transform.position - _camera.transform.forward * _cameraDefaultDistance;
         result += _cameraOffset;
 
         return result;
-    } // setInitialPosition
+    } // CalulateStandardCameraPosition
 
     void LateUpdate()
-    {
-        _viewportPlayerPos = _camera.WorldToViewportPoint(_mainPlayer.position);
+    {        
+        _viewportPlayerPos = _camera.WorldToViewportPoint(_player.position);
 
-        if (IsSettingPlayerToTheMiddle())
+        // taking the player speed
+        UpdatePlayerSpeed();
+        float xValue = 0;
+        float yValue = 0;
+        // first checking Axis X
+        if (IsPlayerOutsideBorderX())
         {
-            UpdateSettingPlayerToMiddle(Time.deltaTime);
+            // take the camera Speed for Axis X
+            xValue = UpdateCameraSpeed(Axis.X);
+            if (_doingInertia[(int)Axis.X])
+                ResetInertia(Axis.X);
         } else
         {
-            UpdateCheckBordersViewport(Time.deltaTime);
+            if (!_doingInertia[(int)Axis.X])
+                InitInertia(Axis.X);
+            // taking the inertia value for Axis X
+            xValue = UpdateCameraInertia(Time.deltaTime, Axis.X);
         }
+
+        // second checking axis Y
+        if (IsPlayerOutsideBorderY())
+        {
+            // take the camera Speed for Axis Y
+            yValue = UpdateCameraSpeed(Axis.Y);
+            if (_doingInertia[(int)Axis.Y])
+                ResetInertia(Axis.Y);
+        } else
+        {
+            if (!_doingInertia[(int)Axis.Y])
+                InitInertia(Axis.Y);
+            // taking the inertia value for Axis Y
+            yValue = UpdateCameraInertia(Time.deltaTime, Axis.Y);
+        }
+
+        // updating camera position
+        _cameraSpeed.Set(xValue, 0, yValue);
+        UpdateCameraPosition();
+
+        _debugPlayerPosition = _player.position;
     } // LateUpdate 
 
-    private void UpdateSettingPlayerToMiddle(float dt)
+
+    private void UpdatePlayerSpeed()
     {
-        _timeStamp += Time.deltaTime;
-
-        _destinyCameraPosition = CalulateStandardCameraPosition();
-        _camera.transform.position = Vector3.Lerp(_originalCameraPosition, _destinyCameraPosition, _timeStamp / _timeToSetInMiddle);
-
-        if (_timeStamp >= _timeToSetInMiddle)
-        {
-            SetSettingPlayerToTheMiddle(false);
-        }
-    } // UpdateSettingPlayerToMiddle
-
-    private void UpdateCheckBordersViewport(float dt)
-    {
-        if (_viewportPlayerPos.x < _viewportBorderX || _viewportPlayerPos.x > 1-_viewportBorderX ||
-                _viewportPlayerPos.y < _viewportBorderY || _viewportPlayerPos.y > 1-_viewportBorderY)
-        {
-            _originalCameraPosition = _camera.transform.position;
-            _timeStamp = 0;
-            SetSettingPlayerToTheMiddle(true);
-        }
+        _playerSpeed = _player.position - _debugPlayerPosition;
+        _playerSpeed.Set(_playerSpeed.x, 0, _playerSpeed.z);
+        _debugPlayerSpeedNormalized = _playerSpeed.normalized;
     } // UpdateCheckBordersViewport
 
-    public bool IsSettingPlayerToTheMiddle()
+    /// <summary>
+    /// Updating the camera speed taking the same that the player
+    /// </summary>
+    /// <param name="axis"></param>
+    /// <returns></returns>
+    private float UpdateCameraSpeed(Axis axis)
     {
-        return _settingPlayerToMiddle;
-    } // IsSettingPlayerToTheMiddle
+        return axis == Axis.X?_playerSpeed.x: _playerSpeed.z;
+    } // UpdateCameraSpeed
 
-    public void SetSettingPlayerToTheMiddle(bool setting)
+    /// <summary>
+    /// Reset inertia values
+    /// </summary>
+    /// <param name="axis"></param>
+    private void ResetInertia(Axis axis)
+    { 
+        if (_doingInertia[(int)axis])
+        {
+            _doingInertia[(int)axis] = false;
+        }
+    } // ResetInertia
+
+    /// <summary>
+    /// Initialize the values for inertia
+    /// </summary>
+    /// <param name="axis"></param>
+    private void InitInertia(Axis axis)
     {
-        _settingPlayerToMiddle = setting;
-    } // SetSettingPlayerToTheMiddle
+        if (!_doingInertia[(int)axis])
+        {
+            _doingInertia[(int)axis] = true;
+            _initialInerciaSpeed[(int)axis] = axis == Axis.X?_cameraSpeed.x: _cameraSpeed.z;
+            _inertiaTimeStamp[(int)axis] = 0;
+        }
+    } // InitInertia
+
+    private float UpdateCameraInertia(float dt, Axis axis)
+    {
+        // if still doing inertia
+        if (_inertiaTimeStamp[(int)axis] < _timeInertia)
+        {
+            _inertiaTimeStamp[(int)axis] += Time.deltaTime;
+            
+            return Mathf.Lerp(_initialInerciaSpeed[(int)axis], 0, _inertiaTimeStamp[(int)axis] / _timeInertia);
+        } else
+        {
+            return 0;
+        }
+    } // UpdateCameraInertiaX
+
+    private void UpdateCameraPosition()
+    {
+        if (_cameraSpeed.x != 0 || _cameraSpeed.z != 0)
+        {
+            transform.Translate(_cameraSpeed, Space.World);
+        }
+    } // UpdateCameraPosition
+
+    private bool IsPlayerOutsideBorderX()
+    {
+        if (_debugPlayerSpeedNormalized.x < 0 && _viewportPlayerPos.x < _viewportBorderX)
+            return true;
+        else if (_debugPlayerSpeedNormalized.x > 0 && _viewportPlayerPos.x > 1 - _viewportBorderX)
+            return true;
+
+        return false;
+    } // IsPlayerOutsideBorderX
+
+    private bool IsPlayerOutsideBorderY()
+    {
+        if (_debugPlayerSpeedNormalized.z < 0 && _viewportPlayerPos.y < _viewportBorderY)
+            return true;
+        else if (_debugPlayerSpeedNormalized.z > 0 && _viewportPlayerPos.y > 1 - _viewportBorderY)
+            return true;
+
+        return false;
+    } // IsPlayerOutsideBorderY
 }
