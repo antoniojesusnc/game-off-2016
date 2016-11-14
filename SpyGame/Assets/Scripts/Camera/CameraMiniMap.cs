@@ -4,7 +4,8 @@ using System;
 
 public class CameraMiniMap : MonoBehaviour {
 
-    public float _distanceToPlayer;
+    public float _ortographicDistance;
+    public float _realDistance;
 
     private Transform _player;
     private Vector3 _playerOffset;
@@ -18,11 +19,11 @@ public class CameraMiniMap : MonoBehaviour {
     private void SetInitialPosition()
     {
         Camera cameraComponent = gameObject.GetComponent<Camera>();
-        cameraComponent.orthographicSize = _distanceToPlayer;
+        cameraComponent.orthographicSize = _ortographicDistance;
 
         cameraComponent.farClipPlane = 20;
 
-        _playerOffset = Vector3.up * 15;
+        _playerOffset = Vector3.up * _realDistance;
         transform.position = _player.position + _playerOffset;
         transform.rotation = Quaternion.Euler(90, 0, 0);
 

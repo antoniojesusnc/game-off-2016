@@ -2,9 +2,11 @@
 using System.Collections;
 using Geometry;
 
-namespace Utils { 
-    public class Math {
-        
+namespace Utils
+{
+    public class Math
+    {
+
         /// <summary>
         /// Check if a Point is inside a Cone
         /// </summary>
@@ -24,13 +26,12 @@ namespace Utils {
             if (directioPointToCone.sqrMagnitude > cone.getLength() * cone.getLength())
                 return false;
 
+            /*
             Debug.Log("Dot "+Vector3.Dot(coneFacing.normalized, directioPointToCone.normalized));
             Debug.Log("Acos " + Mathf.Acos(Vector3.Dot(coneFacing.normalized, directioPointToCone.normalized)));
             Debug.Log("AcosRad " + Mathf.Rad2Deg* Mathf.Acos(Vector3.Dot(coneFacing.normalized, directioPointToCone.normalized)));
-
-            Debug.Log("angle " + cone.getAngle());
-
-            if (Mathf.Acos(Vector3.Dot(coneFacing.normalized, directioPointToCone.normalized))* Mathf.Rad2Deg <= cone.getAngle()*0.5f)
+            */
+            if (Mathf.Acos(Vector3.Dot(coneFacing.normalized, directioPointToCone.normalized)) * Mathf.Rad2Deg <= cone.getAngle() * 0.5f)
                 return true;
 
             return false;
