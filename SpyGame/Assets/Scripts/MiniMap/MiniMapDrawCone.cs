@@ -57,8 +57,6 @@ public class MiniMapDrawCone : MonoBehaviour
     /// </summary>
     private void SetMeshPoperties()
     {
-        var m = Matrix4x4.TRS(transform.position, Quaternion.identity, Vector3.one);
-
         float halfConeAngle = _cone.getAngle() * 0.5f;
         float eachAngle = _cone.getAngle() / _quality;
 
