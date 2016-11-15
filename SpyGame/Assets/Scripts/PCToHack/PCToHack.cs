@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-[RequireComponent(typeof(SphereCollider))]
+//[RequireComponent(typeof(SphereCollider))]
 public class PCToHack : MonoBehaviour
 {
 
@@ -16,7 +16,7 @@ public class PCToHack : MonoBehaviour
 
     private void Init()
     {
-        GetComponent<SphereCollider>().radius = _usableRange;
+        GetComponentInChildren<SphereCollider>().radius = _usableRange;
     } // Init
 
     public void OnTriggerEnter(Collider other)

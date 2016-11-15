@@ -24,6 +24,6 @@ GLHF! <3
 ## The Game
 
 Developers
-#Antonio Jesus Narvaez
-#Christopher Ozdoba
-#Carlos D'Agostino
+* Antonio Jesus Narvaez
+* Christopher Ozdoba
+* Carlos D'Agostino
