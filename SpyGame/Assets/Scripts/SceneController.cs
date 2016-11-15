@@ -18,6 +18,8 @@ namespace SpyGame
 		private delegate void UpdateDelegate();
 		private UpdateDelegate[] updateDelegates;
 
+		public static Game Game { get; private set; }
+
 		//--------------------------------------------------------------------------
 		// public static methods
 		//--------------------------------------------------------------------------
@@ -43,6 +45,7 @@ namespace SpyGame
 
 			//Setup the singleton instance
 			sceneController = this;
+			Game = new Game ();
 
 			//Setup the array of updateDelegates
 			updateDelegates = new UpdateDelegate[(int)SceneState.Count];
@@ -58,7 +61,7 @@ namespace SpyGame
 
 			nextSceneName = "MenuScene";
 			sceneState = SceneState.Reset;
-			GetComponent<Camera>().orthographicSize = Screen.height/2;
+//			GetComponent<Camera>().orthographicSize = Screen.height/2;
 		}
 
 		protected void OnDestroy()

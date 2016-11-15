@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Geometry;
+using SpyGame;
 
 public class DebugCone : MonoBehaviour
 {
@@ -13,6 +14,13 @@ public class DebugCone : MonoBehaviour
 
     bool check = false;
 
+	Game game;
+
+	void Awake ()
+	{
+		game = SceneController.Game;
+	}
+
     void Update()
     {
 
@@ -23,8 +31,11 @@ public class DebugCone : MonoBehaviour
                 check = true;
                 if (_objetive != null)
                 {
-                    if (Utils.Math.isInsideCone(_cone, transform.position, transform.forward, _objetive.position))
-                        Debug.Log("Player Detected");
+					if (Utils.Math.isInsideCone (_cone, transform.position, transform.forward, _objetive.position)) 
+					{
+//						Debug.Log ("Player Detected");
+						game.EventManager.Emit(TestEvents.TEST01);
+					}
                 }
             }
         } else
