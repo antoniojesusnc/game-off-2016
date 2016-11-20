@@ -6,8 +6,8 @@ using System;
 
 public class GUIPcToHack : MonoBehaviour
 {
-    public OnCanHackPC _canHackElement;
-    public OnCannotHackPC _cannotHackElement;
+    public EventGeneric _canHackEvent;
+    public EventGeneric _cannotHackEvent;
 
     public Vector3 _offset;
     public Vector3 _rotation;
@@ -21,8 +21,8 @@ public class GUIPcToHack : MonoBehaviour
         transform.rotation = Quaternion.Euler(_rotation);
         transform.localScale = Vector3.one * _scale;
 
-        SceneController.Game.EventManager.RegisterListener(_canHackElement, onCanHackEvent);
-        SceneController.Game.EventManager.RegisterListener(_cannotHackElement, onCannotHackEvent);
+        SceneController.Game.EventManager.RegisterListener(_canHackEvent, onCanHackEvent);
+        SceneController.Game.EventManager.RegisterListener(_cannotHackEvent, onCannotHackEvent);
 
         gameObject.SetActive(false);
     }
