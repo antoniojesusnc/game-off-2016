@@ -8,7 +8,7 @@ namespace SpyGame.WorldObjects
     public class Door : MonoBehaviour
     {
 
-        public EventGeneric _eventToOpenDoor;
+        public Events.EventType _eventToOpenDoor;
         public Transform _rotationPivot;
 
         public float _timeOpenDoor;
@@ -18,7 +18,6 @@ namespace SpyGame.WorldObjects
 
         private bool _opening;
         private bool _opened;
-
 
         void Start()
         {
