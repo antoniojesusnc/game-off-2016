@@ -8,7 +8,7 @@ using SpyGame.Events;
 public class PCToHack : MonoBehaviour
 {
     [Header("Hack Properties")]
-    public float _hackingTime;
+    public float _hackTime;
 
     [Header("World Poperties")]
     public float _usableRange;
@@ -33,12 +33,14 @@ public class PCToHack : MonoBehaviour
     private void Init()
     {
         GetComponentInChildren<SphereCollider>().radius = _usableRange;
+
+        SpyGame.SceneController.Game.EventManager.RegisterListener(_onStartHackingEvent, OnStartHacking);
     } // Init
 
-    public void OnStartHacking()
+    public void OnStartHacking(GameEvent e)
     {
         _isHacking = true;
-        SceneController.Game.EventManager.Emit(_onStartHackingEvent, this);
+        //SceneController.Game.EventManager.Emit(_onStartHackingEvent, this);
     } // OnStartHacking
 
     public void OnFinishHacking()
@@ -54,9 +56,9 @@ public class PCToHack : MonoBehaviour
 
         _timeStamp += Time.deltaTime;
 
-        if (_timeStamp > _hackingTime)
+        if (_timeStamp > _hackTime)
             OnFinishHacking();
-    }
+    } // Update
 
     // Trigger Events
     public void OnTriggerEnter(Collider other)
@@ -72,4 +74,11 @@ public class PCToHack : MonoBehaviour
         _canBeUsable = false;
         // here i need to tell to the GUI the pc can NOT Be hackeable
     } // OnTriggerExit
+
+    // gets & sets
+
+    public float GetPercentageHacked()
+    {
+        return _timeStamp / _hackTime;
+    } // GetHackTime
 }

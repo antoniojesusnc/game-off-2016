@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a59bb266de8f33479078e6d4bed2f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventToOpenDoor: {fileID: 11400000, guid: dead746b7698d2043b18fb43e7cd01e9, type: 2}
+  _eventToOpenDoor: {fileID: 11400000, guid: 060a9b5e01a9cd84c808573904380958, type: 2}
   _rotationPivot: {fileID: 4000010346649504}
   _timeOpenDoor: 2
   _openAngle: 120

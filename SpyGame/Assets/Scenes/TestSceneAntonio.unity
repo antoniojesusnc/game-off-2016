@@ -169,6 +169,47 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 4798961}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &24269307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 24269308}
+  - 114: {fileID: 24269309}
+  m_Layer: 0
+  m_Name: DebugGameStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &24269308
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 24269307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 93301634}
+  m_RootOrder: 6
+--- !u!114 &24269309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 24269307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d9130f089d71445ad6c49f0ff03546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startEvent: {fileID: 11400000, guid: 74adda1d59011b640bfa36ce201c6725, type: 2}
 --- !u!1 &48071149
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +439,8 @@ Transform:
   - {fileID: 771199994}
   - {fileID: 574019361}
   - {fileID: 572425179}
+  - {fileID: 1864432866}
+  - {fileID: 24269308}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &452082098
@@ -637,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46bb8ba46bb89ec458d309c84fa5989a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hackingTime: 0
+  _hackTime: 5
   _usableRange: 2
   _canHackEvent: {fileID: 11400000, guid: dead746b7698d2043b18fb43e7cd01e9, type: 2}
   _canontHackEvent: {fileID: 11400000, guid: 15de354bb2bb21647afbebb7274dd70f, type: 2}
@@ -1267,6 +1310,9 @@ GameObject:
   - 224: {fileID: 879527197}
   - 114: {fileID: 879527200}
   - 114: {fileID: 879527198}
+  - 114: {fileID: 879527203}
+  - 114: {fileID: 879527202}
+  - 114: {fileID: 879527201}
   - 114: {fileID: 879527199}
   m_Layer: 5
   m_Name: GUIPCToHackInProgress
@@ -1307,11 +1353,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _listeners:
   - Name: 
-    eventListener: {fileID: 11400000, guid: dead746b7698d2043b18fb43e7cd01e9, type: 2}
+    eventListener: {fileID: 11400000, guid: 74adda1d59011b640bfa36ce201c6725, type: 2}
     source: {fileID: 0}
     interactionMethod:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 879527203}
+          m_MethodName: SetLocalScale
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 879527201}
+          m_MethodName: SetRotation
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 879527202}
+          m_MethodName: SetPosition
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 879527199}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Name: 
+    eventListener: {fileID: 11400000, guid: 47ec17b096a51d84baf40277d6a4dbca, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 879527200}
+          m_MethodName: StartHacking
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 879527199}
           m_MethodName: SetActive
           m_Mode: 6
@@ -1326,7 +1435,7 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - Name: 
-    eventListener: {fileID: 11400000, guid: 15de354bb2bb21647afbebb7274dd70f, type: 2}
+    eventListener: {fileID: 11400000, guid: 060a9b5e01a9cd84c808573904380958, type: 2}
     source: {fileID: 0}
     interactionMethod:
       m_PersistentCalls:
@@ -1366,9 +1475,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc5a591796d387449164c84d428090e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offset: {x: 0, y: 1, z: 0}
+  _progressBar: {fileID: 912412425}
+--- !u!114 &879527201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 879527196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab057e93c8fe18b4cbe44c2bf77ceb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _rotation: {x: 90, y: 0, z: 0}
-  _scale: 0.005
+--- !u!114 &879527202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 879527196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319cd9a9351ca544ba0ae8b491b7e6c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _relativePosition: {fileID: 572425179}
+  _offset: {x: 0, y: 1, z: 0}
+--- !u!114 &879527203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 879527196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d101cd1dab559440a7ebc2d5cf95a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _newlocalScale: {x: 0.01, y: 0.01, z: 0.01}
 --- !u!1 &912412423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,7 +1572,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 2
 --- !u!222 &912412426
@@ -1603,7 +1747,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1091778950}
+  - 114: {fileID: 1091778953}
+  - 114: {fileID: 1091778954}
+  - 114: {fileID: 1091778955}
   - 114: {fileID: 1091778951}
+  - 114: {fileID: 1091778952}
   m_Layer: 5
   m_Name: GUIPCToHackPressButton
   m_TagString: Untagged
@@ -1638,17 +1786,167 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091778949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8588879462d24d9f2e4d5f0f67adf, type: 3}
+  m_Script: {fileID: 11500000, guid: ab057e93c8fe18b4cbe44c2bf77ceb1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canHackEvent: {fileID: 11400000, guid: dead746b7698d2043b18fb43e7cd01e9, type: 2}
-  _cannotHackEvent: {fileID: 11400000, guid: 15de354bb2bb21647afbebb7274dd70f, type: 2}
-  _onStartHackEvent: {fileID: 0}
-  _onFinishHackvent: {fileID: 0}
-  _offset: {x: 0, y: 1, z: 0}
   _rotation: {x: 90, y: 0, z: 0}
-  _scale: 0.005
-  a: {fileID: 0}
+--- !u!114 &1091778952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091778949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a94dff11a43db4996450af1b65b53c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1091778953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091778949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e2ce3492c27d045b348aa0c191de66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listeners:
+  - Name: 
+    eventListener: {fileID: 11400000, guid: 74adda1d59011b640bfa36ce201c6725, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1091778954}
+          m_MethodName: SetLocalScale
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1091778955}
+          m_MethodName: SetPosition
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1091778951}
+          m_MethodName: SetRotation
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1091778952}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Name: 
+    eventListener: {fileID: 11400000, guid: dead746b7698d2043b18fb43e7cd01e9, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1091778952}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Name: 
+    eventListener: {fileID: 11400000, guid: 15de354bb2bb21647afbebb7274dd70f, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1091778952}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Name: 
+    eventListener: {fileID: 11400000, guid: 47ec17b096a51d84baf40277d6a4dbca, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1091778952}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+--- !u!114 &1091778954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091778949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d101cd1dab559440a7ebc2d5cf95a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _newlocalScale: {x: 0.005, y: 0.005, z: 0.005}
+--- !u!114 &1091778955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091778949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319cd9a9351ca544ba0ae8b491b7e6c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _relativePosition: {fileID: 572425179}
+  _offset: {x: 0, y: 1, z: 0}
 --- !u!1 &1105627344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,7 +2705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3006,6 +3304,98 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1864432865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1864432866}
+  - 114: {fileID: 1864432869}
+  - 114: {fileID: 1864432867}
+  m_Layer: 0
+  m_Name: DebugKeyToHack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1864432866
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864432865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 93301634}
+  m_RootOrder: 5
+--- !u!114 &1864432867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864432865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2248d6cde48fab147b2d79a9864a2dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventStartHacking: {fileID: 11400000, guid: 47ec17b096a51d84baf40277d6a4dbca, type: 2}
+--- !u!114 &1864432869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864432865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e2ce3492c27d045b348aa0c191de66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listeners:
+  - Name: 
+    eventListener: {fileID: 11400000, guid: dead746b7698d2043b18fb43e7cd01e9, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1864432867}
+          m_MethodName: SetCanHack
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Name: 
+    eventListener: {fileID: 11400000, guid: 15de354bb2bb21647afbebb7274dd70f, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1864432867}
+          m_MethodName: SetCanHack
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
 --- !u!1 &1873248820
 GameObject:
   m_ObjectHideFlags: 0
