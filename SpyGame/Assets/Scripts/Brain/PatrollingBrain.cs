@@ -33,19 +33,12 @@ namespace SpyGame
 
 			Debug.Log ("Cam.forward: " + m_Cam.forward.ToString());
 
-			// Calculate the time needed for the whole distance with the 
-			// formula time = distance / speed, then determine the current 
-			// time on the path. Using Vector3.Lerp, you interpolate the 
-			// current position of the enemy between the segment’s start 
-			// and end positions. 
 			Vector3 m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 			Vector3 dir = (targetPosition - sourcePosition).normalized;
 			dir = (dir.z * m_CamForward + dir.x * m_Cam.right) * speed;
 
 			m_character.Move(dir, false, false);
 
-			// Check whether the enemy has reached the endPosition. If yes, 
-			// handle these two possible scenarios:
 			float dist = Vector3.Distance (thinker.transform.position, targetPosition);
 			if (dist < 3) {
 				currentWaypoint = GetNextWaypoint();
