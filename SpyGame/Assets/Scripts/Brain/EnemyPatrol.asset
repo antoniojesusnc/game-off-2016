@@ -11,11 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465e545cc68c34766b4b1303b857bfd2, type: 3}
   m_Name: EnemyPatrol
   m_EditorClassIdentifier: 
-  m_Waypoints:
+  waypoints:
   - {fileID: 4000010262717852, guid: f546a814cbf3c43f8be4cc5f1cbf8e4a, type: 2}
   - {fileID: 4000010671868488, guid: f546a814cbf3c43f8be4cc5f1cbf8e4a, type: 2}
   - {fileID: 4000010894635650, guid: f546a814cbf3c43f8be4cc5f1cbf8e4a, type: 2}
   - {fileID: 4000010230891192, guid: f546a814cbf3c43f8be4cc5f1cbf8e4a, type: 2}
-  m_Unit: {fileID: 0}
-  m_nodePrecisionMod: 0
-  m_Speed: 2
+  speed: 0.5
