@@ -22,9 +22,14 @@
 //			brain.Initialize(this);
 //		}
 
+		void Start () 
+	{
+			brain.Initialize (this);
+		}
+
 		void Update ()
 		{
-			brain.Think(this);
+			brain.Think (this);
 		}
 
 //		public void Setup(Transform spawnPoint)
