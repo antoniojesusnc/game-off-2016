@@ -63,6 +63,11 @@ public class PCToHack : MonoBehaviour
     // Trigger Events
     public void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "Player")
+        {
+            Debug.Log("Someting enter in PCToHack and it is not the Player");
+            return;
+        }
         SceneController.Game.EventManager.Emit(_canHackEvent, this);
         _canBeUsable = true;
         // here i need to tell to the GUI the pc can Be hackeable
@@ -70,6 +75,12 @@ public class PCToHack : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
+        if (other.tag != "Player")
+        {
+            Debug.Log("Someting enter in PCToHack and it is not the Player");
+            return;
+        }
+
         SceneController.Game.EventManager.Emit(_canontHackEvent, this);
         _canBeUsable = false;
         // here i need to tell to the GUI the pc can NOT Be hackeable
