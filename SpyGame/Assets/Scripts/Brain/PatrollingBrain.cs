@@ -1,4 +1,4 @@
-﻿using UnityStandardAssets.Characters.ThirdPerson;
+﻿using SpyGame.Characters;
 
 namespace SpyGame
 {
@@ -13,8 +13,8 @@ namespace SpyGame
 		public List<Transform> waypoints;
 		public float speed = 1.0f;
 		private int currentWaypoint = 0;
-
-		private ThirdPersonCharacter m_character;
+		 
+		private Character m_character;
 		private Transform m_Cam;
 
 		public override void Initialize(Thinker thinker) 
@@ -23,7 +23,7 @@ namespace SpyGame
 			currentWaypoint = 0;
 
 			thinker.transform.position = waypoints [currentWaypoint].position;
-			m_character = thinker.GetComponentInParent<ThirdPersonCharacter> ();
+			m_character = thinker.GetComponentInParent<Character> ();
 		}
 
 		public override void Think(Thinker thinker)
