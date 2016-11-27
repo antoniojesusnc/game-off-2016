@@ -6,12 +6,11 @@
 	[RequireComponent (typeof (Rigidbody))]
 	public class PlayerMovement : MonoBehaviour 
 	{
+
 		public float _Speed = 12f;                 // How fast the player moves.
 
 
 		private Rigidbody _Rigidbody;              // Reference used to move the player.
-		private float _MovementInputValue;         // The current value of the movement input.
-		private float _TurnInputValue;             // The current value of the turn input.
 		private Vector3 _currentDir = new Vector3();
 
 		// Use this for initialization

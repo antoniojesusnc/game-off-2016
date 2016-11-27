@@ -7,15 +7,25 @@
 	public class PlayerControlledBrain : Brain
 	{
 
+		PlayerMovement movementComponent;
+
+		public override void Initialize(Thinker thinker)
+		{
+			movementComponent = thinker.GetComponent<PlayerMovement>();
+		}
+
 		public override void Think(Thinker thinker)
 		{			
-			float inputX = Input.GetAxisRaw ("Vertical");
-			float inputY = Input.GetAxisRaw ("Horizontal");
+			float inputX = Input.GetAxisRaw ("Horizontal");
+			float inputZ = Input.GetAxisRaw ("Vertical");
 
-			Vector3 direction = new Vector3 (inputX, 0, inputY).normalized;
+			Vector3 direction = new Vector3 (inputX, 0, inputZ).normalized;
 
-			var movement = thinker.GetComponent<PlayerMovement>();
-			movement.Steer(direction);
+			if (movementComponent != null) 
+			{
+//				var movement = thinker.GetComponent<PlayerMovement> ();
+				movementComponent.Steer (direction);
+			}
 		}
 	}
 }
