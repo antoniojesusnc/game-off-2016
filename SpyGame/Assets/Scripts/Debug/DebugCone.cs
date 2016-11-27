@@ -31,11 +31,21 @@ public class DebugCone : MonoBehaviour
                 check = true;
                 if (_objetive != null)
                 {
+
                     if (Utils.Math.isInsideCone(_cone, transform.position, transform.forward, _objetive.position))
                     {
-                        //						Debug.Log ("Player Detected");
-                        //game.EventManager.Emit(TestEvents.TEST01);
+                        RaycastHit hit;
+
+                        if (Physics.Raycast(transform.position, ( _objetive.position - transform.position ), out hit, _cone.getLength()))
+                        {
+                            if (hit.collider.gameObject.Equals(_objetive.transform.gameObject))
+                            {
+                                //game.EventManager.Emit(TestEvents.TEST01);
+                            }
+                        }
+
                     }
+
                 }
             }
         } else
