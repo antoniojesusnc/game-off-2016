@@ -14,12 +14,12 @@ public class DebugCone : MonoBehaviour
 
     bool check = false;
 
-	Game game;
+    Game game;
 
-	void Awake ()
-	{
-		game = SceneController.Game;
-	}
+    void Awake()
+    {
+        game = SceneController.Game;
+    }
 
     void Update()
     {
@@ -31,11 +31,11 @@ public class DebugCone : MonoBehaviour
                 check = true;
                 if (_objetive != null)
                 {
-					if (Utils.Math.isInsideCone (_cone, transform.position, transform.forward, _objetive.position)) 
-					{
-//						Debug.Log ("Player Detected");
-						game.EventManager.Emit(TestEvents.TEST01);
-					}
+                    if (Utils.Math.isInsideCone(_cone, transform.position, transform.forward, _objetive.position))
+                    {
+                        //						Debug.Log ("Player Detected");
+                        //game.EventManager.Emit(TestEvents.TEST01);
+                    }
                 }
             }
         } else
