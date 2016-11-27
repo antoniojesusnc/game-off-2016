@@ -21,38 +21,26 @@ public class DebugCone : MonoBehaviour
         game = SceneController.Game;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
-        if (( Mathf.FloorToInt(Time.timeSinceLevelLoad % 2) == 0 ))
+        if (_objetive != null)
         {
-            if (!check || Input.GetKeyUp(KeyCode.A))
+
+            if (Utils.Math.isInsideCone(_cone, transform.position, transform.forward, _objetive.position))
             {
-                check = true;
-                if (_objetive != null)
+                RaycastHit hit;
+
+                if (Physics.Raycast(transform.position, ( _objetive.position - transform.position ), out hit, _cone.getLength()))
                 {
-
-                    if (Utils.Math.isInsideCone(_cone, transform.position, transform.forward, _objetive.position))
+                    if (hit.collider.gameObject.Equals(_objetive.transform.gameObject))
                     {
-                        RaycastHit hit;
-
-                        if (Physics.Raycast(transform.position, ( _objetive.position - transform.position ), out hit, _cone.getLength()))
-                        {
-                            if (hit.collider.gameObject.Equals(_objetive.transform.gameObject))
-                            {
-                                //game.EventManager.Emit(TestEvents.TEST01);
-                            }
-                        }
-
+                        //game.EventManager.Emit(TestEvents.TEST01);
                     }
-
                 }
-            }
-        } else
-        {
-            check = false;
-        }
 
+            }
+
+        }
     }
 
     public void OnDrawGizmos()
