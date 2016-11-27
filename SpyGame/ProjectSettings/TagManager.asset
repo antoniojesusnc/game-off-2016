@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GridParent
   - PcToHack
+  - Enemy
   layers:
   - Default
   - TransparentFX

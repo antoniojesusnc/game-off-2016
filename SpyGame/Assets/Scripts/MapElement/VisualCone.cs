@@ -3,16 +3,17 @@ using System.Collections;
 using Geometry;
 using SpyGame;
 
-public class DebugCone : MonoBehaviour
+public class VisualCone : MonoBehaviour
 {
 
     public Cone _cone;
 
     public Transform _objetive;
 
-    public bool _drawWithGizmo;
+    public SpyGame.Events.EventType _onDetectPlayerEvent;
 
-    bool check = false;
+    [Header("Debug Gizmo")]
+    public bool _drawWithGizmo;
 
     Game game;
 
@@ -34,14 +35,18 @@ public class DebugCone : MonoBehaviour
                 {
                     if (hit.collider.gameObject.Equals(_objetive.transform.gameObject))
                     {
-                        //game.EventManager.Emit(TestEvents.TEST01);
+                        game.EventManager.Emit(_onDetectPlayerEvent);
                     }
                 }
-
             }
 
         }
     }
+
+    public Cone GetCone()
+    {
+        return _cone;
+    } // GetCone
 
     public void OnDrawGizmos()
     {

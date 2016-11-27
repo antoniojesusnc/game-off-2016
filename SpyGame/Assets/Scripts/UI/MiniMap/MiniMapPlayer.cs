@@ -5,6 +5,9 @@ namespace SpyGame.MiniMap
 {
     public class MiniMapPlayer : MonoBehaviour
     {
+
+        public Vector3 _offset;
+
         private Transform _player;
 
         void Start()
@@ -14,7 +17,7 @@ namespace SpyGame.MiniMap
 
         void Update()
         {
-            transform.position = _player.position;
+            transform.position = _player.position + _offset;
         } // Update
     } // MiniMapPlayer
 }

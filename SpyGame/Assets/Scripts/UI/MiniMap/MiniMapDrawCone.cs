@@ -7,13 +7,14 @@ public class MiniMapDrawCone : MonoBehaviour
 {
 
     public int _quality = 15;
-    public Cone _cone;
-
     public Material _sharedMaterial;
+
+    private Cone _cone;
     private Mesh _mesh;
 
-    void Start()
+    public void SetCone(Cone cone)
     {
+        _cone = cone;
         Init();
     } // Start
 

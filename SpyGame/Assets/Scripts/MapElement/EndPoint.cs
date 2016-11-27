@@ -13,8 +13,6 @@ public class EndPoint : MonoBehaviour
     [Header("On Enter End Point Event")]
     public SpyGame.Events.EventType _onReachEndPointEvent;
 
-    private bool _playerInside;
-
     void Start()
     {
         Init();
@@ -34,8 +32,6 @@ public class EndPoint : MonoBehaviour
             return;
         }
         SceneController.Game.EventManager.Emit(_onReachEndPointEvent, this);
-        _playerInside = true;
-        Debug.Log("Player Inside");
     } // OnTriggerEnter
 
     public void OnTriggerExit(Collider other)
@@ -45,8 +41,5 @@ public class EndPoint : MonoBehaviour
             Debug.Log("Someting enter in PCToHack and it is not the Player");
             return;
         }
-
-        _playerInside = false;
-        Debug.Log("Player Outside");
     } // OnTriggerExit
 }

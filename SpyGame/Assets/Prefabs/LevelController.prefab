@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010750564874}
   - 114: {fileID: 114000011636584510}
+  - 114: {fileID: 114000010899382458}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -40,6 +41,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000010899382458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011071693636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e2ce3492c27d045b348aa0c191de66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listeners:
+  - Name: 
+    eventListener: {fileID: 11400000, guid: 6e6fedea5e4b5e34f85cc3405320e0ec, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114000011636584510}
+          m_MethodName: GameFinishSuccess
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Name: 
+    eventListener: {fileID: 11400000, guid: 6bee1efb41115c7409268ad65c5034b3, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114000011636584510}
+          m_MethodName: GameOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
 --- !u!114 &114000011636584510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,4 +103,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startLevelEvent: {fileID: 11400000, guid: 74adda1d59011b640bfa36ce201c6725, type: 2}
+  _gameFinishSuccess: {fileID: 11400000, guid: f722a098752ba8b4e88337eba52ee2cc, type: 2}
   _gameOverEvent: {fileID: 11400000, guid: 77905cafa1fc30346a491702bc104fa3, type: 2}
