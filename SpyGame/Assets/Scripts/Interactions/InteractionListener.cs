@@ -12,7 +12,7 @@ namespace SpyGame.Interactions
     {
         public List<InteractionPairData> _listeners;
 
-        void Start()
+        void Awake()
         {
             Init();
         } // Start
