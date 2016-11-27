@@ -1,198 +1,238 @@
 ﻿
 namespace SpyGame
 {
-	using System.Collections;
-	using UnityEngine;
-	using UnityEngine.SceneManagement;
+    using System.Collections;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
 
 
-	public class SceneController : MonoBehaviour {
-		private static SceneController sceneController;
+    public class SceneController : MonoBehaviour
+    {
+        public const string LevelPrefix = "MissionLevel";
+        private static SceneController sceneController;
 
-		private string currentSceneName;
-		private string nextSceneName;
-		private AsyncOperation resourceUnloadTask;
-		private AsyncOperation sceneLoadTask;
-		private enum SceneState { Reset, Preload, Load, Unload, Postload, Ready, Run, Count };
-		private SceneState sceneState;
-		private delegate void UpdateDelegate();
-		private UpdateDelegate[] updateDelegates;
+        private int currentSceneNumber;
+        private string currentSceneName;
+        private bool reload;
+        private string nextSceneName;
+        private AsyncOperation resourceUnloadTask;
+        private AsyncOperation sceneLoadTask;
+        private enum SceneState
+        {
+            Reset, Preload, Load, Unload, Postload, Ready, Run, Count
+        };
+        private SceneState sceneState;
+        private delegate void UpdateDelegate();
+        private UpdateDelegate[] updateDelegates;
 
-		public static Game Game { get; private set; }
+        public static Game Game
+        { get; private set; }
 
-		//--------------------------------------------------------------------------
-		// public static methods
-		//--------------------------------------------------------------------------
+        //--------------------------------------------------------------------------
+        // public static methods
+        //--------------------------------------------------------------------------
 
-		public static void SwitchScene(string nextSceneName)
-		{
-			if(sceneController != null)
-			{
-				if( sceneController.currentSceneName != nextSceneName )
-				{
-					sceneController.nextSceneName = nextSceneName;
-				}
-			}
-		}
+        public static void Reload()
+        {
+            if (sceneController != null)
+                sceneController.reload = true;
 
-		//--------------------------------------------------------------------------
-		// protected mono methods
-		//--------------------------------------------------------------------------
-		protected void Awake()
-		{
-			//Let's keep this alive between scene changes
-			Object.DontDestroyOnLoad(gameObject);
+        }
 
-			//Setup the singleton instance
-			sceneController = this;
-			Game = new Game ();
+        public static void SwitchScene(int level)
+        {
+            if (sceneController != null)
+            {
+                sceneController.currentSceneNumber = level;
+                SwitchScene(LevelPrefix + level.ToString("00"));
+            }
+        }
 
-			//Setup the array of updateDelegates
-			updateDelegates = new UpdateDelegate[(int)SceneState.Count];
+        public static void SwitchScene(string nextSceneName)
+        {
+            if (sceneController != null)
+            {
+                if (sceneController.currentSceneName != nextSceneName)
+                {
+                    sceneController.nextSceneName = nextSceneName;
+                }
+            }
+        }
 
-			//Set each updateDelegate
-			updateDelegates[(int)SceneState.Reset] = UpdateSceneReset;
-			updateDelegates[(int)SceneState.Preload] = UpdateScenePreload;
-			updateDelegates[(int)SceneState.Load] = UpdateSceneLoad;
-			updateDelegates[(int)SceneState.Unload] = UpdateSceneUnload;
-			updateDelegates[(int)SceneState.Postload] = UpdateScenePostload;
-			updateDelegates[(int)SceneState.Ready] = UpdateSceneReady;
-			updateDelegates[(int)SceneState.Run] = UpdateSceneRun;
+        public static string GetCurrentLevelName()
+        {
+            if (sceneController != null)
+            {
+                return sceneController.currentSceneName;
+            }
+            return "";
+        }
 
-			nextSceneName = "MenuScene";
-			sceneState = SceneState.Reset;
-//			GetComponent<Camera>().orthographicSize = Screen.height/2;
-		}
+        public static int GetCurrentLevelNumber()
+        {
+            if (sceneController != null)
+            {
+                return sceneController.currentSceneNumber;
+            }
+            return 0;
+        }
+        //--------------------------------------------------------------------------
+        // protected mono methods
+        //--------------------------------------------------------------------------
+        protected void Awake()
+        {
+            //Let's keep this alive between scene changes
+            Object.DontDestroyOnLoad(gameObject);
 
-		protected void OnDestroy()
-		{
-			//Clean up all the updateDelegates
-			if(updateDelegates != null)
-			{
-				for(int i = 0; i < (int)SceneState.Count; i++)
-				{
-					updateDelegates[i] = null;
-				}
-				updateDelegates = null;
-			}
+            //Setup the singleton instance
+            sceneController = this;
+            Game = new Game();
 
-			//Clean up the singleton instance
-			if(sceneController != null)
-			{
-				sceneController = null;
-			}
-		}
+            //Setup the array of updateDelegates
+            updateDelegates = new UpdateDelegate[(int)SceneState.Count];
 
-		protected void OnDisable()
-		{
-		}
+            //Set each updateDelegate
+            updateDelegates[(int)SceneState.Reset] = UpdateSceneReset;
+            updateDelegates[(int)SceneState.Preload] = UpdateScenePreload;
+            updateDelegates[(int)SceneState.Load] = UpdateSceneLoad;
+            updateDelegates[(int)SceneState.Unload] = UpdateSceneUnload;
+            updateDelegates[(int)SceneState.Postload] = UpdateScenePostload;
+            updateDelegates[(int)SceneState.Ready] = UpdateSceneReady;
+            updateDelegates[(int)SceneState.Run] = UpdateSceneRun;
 
-		protected void OnEnable()
-		{
-		}
+            nextSceneName = "MenuScene";
+            sceneState = SceneState.Reset;
+            //			GetComponent<Camera>().orthographicSize = Screen.height/2;
+        }
 
-		protected void Start()
-		{
-		}
+        protected void OnDestroy()
+        {
+            //Clean up all the updateDelegates
+            if (updateDelegates != null)
+            {
+                for (int i = 0; i < (int)SceneState.Count; i++)
+                {
+                    updateDelegates[i] = null;
+                }
+                updateDelegates = null;
+            }
 
-		protected void Update()
-		{
-			if(updateDelegates[(int)sceneState] != null)
-			{
-				updateDelegates[(int)sceneState]();
-			}
-		}
+            //Clean up the singleton instance
+            if (sceneController != null)
+            {
+                sceneController = null;
+            }
+        }
 
-		//--------------------------------------------------------------------------
-		// private methods
-		//--------------------------------------------------------------------------
+        protected void OnDisable()
+        {
+        }
 
-		/// <summary>
-		/// Attach the new scene controller to start cascade of loading
-		/// </summary>
-		private void UpdateSceneReset()
-		{
-			// run a gc pass
-			System.GC.Collect();
-			sceneState = SceneState.Preload;
-		}
+        protected void OnEnable()
+        {
+        }
 
-		/// <summary>
-		/// Handle anything that needs to happen before loading
-		/// </summary>
-		private void UpdateScenePreload()
-		{
-			sceneLoadTask = SceneManager.LoadSceneAsync(nextSceneName);
-			sceneState = SceneState.Load;
-		}
+        protected void Start()
+        {
+        }
 
-		/// <summary>
-		/// Show the loading screen until it's loaded
-		/// </summary>
-		private void UpdateSceneLoad()
-		{
-			// done loading?
-			if(sceneLoadTask.isDone == true)
-			{
-				sceneState = SceneState.Unload;
-			}
-			else
-			{
-				// update scene loading progress
-			}
-		}
+        protected void Update()
+        {
+            if (updateDelegates[(int)sceneState] != null)
+            {
+                updateDelegates[(int)sceneState]();
+            }
+        }
 
-		/// <summary>
-		/// Clean up unused resources by unloading them
-		/// </summary>
-		private void UpdateSceneUnload()
-		{
-			// cleaning up resources yet?
-			if(resourceUnloadTask == null)
-			{
-				resourceUnloadTask = Resources.UnloadUnusedAssets();
-			}
-			else
-			{
-				// done cleaning up?
-				if(resourceUnloadTask.isDone == true)
-				{
-					resourceUnloadTask = null;
-					sceneState = SceneState.Postload;
-				}
-			}
-		}
+        //--------------------------------------------------------------------------
+        // private methods
+        //--------------------------------------------------------------------------
 
-		/// <summary>
-		/// Handle anything that needs to happen immediately after loading
-		/// </summary>
-		private void UpdateScenePostload()
-		{
-			currentSceneName = nextSceneName;
-			sceneState = SceneState.Ready;
-		}
+        /// <summary>
+        /// Attach the new scene controller to start cascade of loading
+        /// </summary>
+        private void UpdateSceneReset()
+        {
+            // run a gc pass
+            System.GC.Collect();
+            sceneState = SceneState.Preload;
+        }
 
-		/// <summary>
-		/// Handle anything that needs to happen immediately before running
-		/// </summary>
-		private void UpdateSceneReady()
-		{
-			// run a gc pass
-			// if you have assets loaded in the scene that are unused currently but 
-			// may be used later DON'T do this here
-			// System.GC.Collect();
-			sceneState = SceneState.Run;
-		}
+        /// <summary>
+        /// Handle anything that needs to happen before loading
+        /// </summary>
+        private void UpdateScenePreload()
+        {
+            sceneLoadTask = SceneManager.LoadSceneAsync(nextSceneName);
+            sceneState = SceneState.Load;
+        }
 
-		/// <summary>
-		/// Wait for scene change
-		/// </summary>
-		private void UpdateSceneRun()
-		{
-			if(currentSceneName != nextSceneName)
-			{
-				sceneState = SceneState.Reset;
-			}
-		}
-	}
+        /// <summary>
+        /// Show the loading screen until it's loaded
+        /// </summary>
+        private void UpdateSceneLoad()
+        {
+            // done loading?
+            if (sceneLoadTask.isDone == true)
+            {
+                sceneState = SceneState.Unload;
+            } else
+            {
+                // update scene loading progress
+            }
+        }
+
+        /// <summary>
+        /// Clean up unused resources by unloading them
+        /// </summary>
+        private void UpdateSceneUnload()
+        {
+            // cleaning up resources yet?
+            if (resourceUnloadTask == null)
+            {
+                resourceUnloadTask = Resources.UnloadUnusedAssets();
+            } else
+            {
+                // done cleaning up?
+                if (resourceUnloadTask.isDone == true)
+                {
+                    resourceUnloadTask = null;
+                    sceneState = SceneState.Postload;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handle anything that needs to happen immediately after loading
+        /// </summary>
+        private void UpdateScenePostload()
+        {
+            currentSceneName = nextSceneName;
+            sceneState = SceneState.Ready;
+        }
+
+        /// <summary>
+        /// Handle anything that needs to happen immediately before running
+        /// </summary>
+        private void UpdateSceneReady()
+        {
+            // run a gc pass
+            // if you have assets loaded in the scene that are unused currently but 
+            // may be used later DON'T do this here
+            // System.GC.Collect();
+            sceneState = SceneState.Run;
+        }
+
+        /// <summary>
+        /// Wait for scene change
+        /// </summary>
+        private void UpdateSceneRun()
+        {
+            if (currentSceneName != nextSceneName || reload)
+            {
+                sceneState = SceneState.Reset;
+                reload = false;
+            }
+        }
+    }
 }

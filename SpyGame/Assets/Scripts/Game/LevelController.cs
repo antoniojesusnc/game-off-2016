@@ -30,5 +30,21 @@ namespace SpyGame
             _enemyDetected = true;
             SpyGame.SceneController.Game.EventManager.Emit(_gameOverEvent);
         }
+
+        // victory and Loose options
+        public void Retry()
+        {
+            SpyGame.SceneController.Reload();
+        }
+
+        public void ReturnToMainMenu()
+        {
+            SpyGame.SceneController.SwitchScene("MenuScene");
+        } // ReturnToMainMenu
+
+        public void GoToNextLevel()
+        {
+
+        } // GoToNextLevel
     }
 }
