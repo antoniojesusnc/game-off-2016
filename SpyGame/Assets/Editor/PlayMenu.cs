@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEditor.SceneManagement;
 
 public class PlayMenu : MonoBehaviour {
 
@@ -10,8 +11,8 @@ public class PlayMenu : MonoBehaviour {
 			return;
 		}
 
-		EditorApplication.SaveCurrentSceneIfUserWantsTo();
-		EditorApplication.OpenScene("Assets/Scenes/StartScene.unity");
+		EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+		EditorSceneManager.OpenScene("Assets/Scenes/StartScene.unity");
 
 		EditorApplication.isPlaying = true;
 	}
