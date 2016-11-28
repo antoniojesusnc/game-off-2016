@@ -15,15 +15,19 @@ public class VisualCone : MonoBehaviour
     [Header("Debug Gizmo")]
     public bool _drawWithGizmo;
 
+    private bool _active;
     Game game;
 
     void Awake()
     {
         game = SceneController.Game;
+        _active = true;
     }
 
     void FixedUpdate()
     {
+        if (!_active)
+            return;
         if (_objetive != null)
         {
 
@@ -42,6 +46,11 @@ public class VisualCone : MonoBehaviour
 
         }
     }
+
+    public void SetActive(bool active)
+    {
+        _active = active;
+    } // SetActive
 
     public Cone GetCone()
     {

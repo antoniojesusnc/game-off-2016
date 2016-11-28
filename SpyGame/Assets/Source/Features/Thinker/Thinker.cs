@@ -1,19 +1,19 @@
-﻿	using SpyGame;
-	using UnityEngine;
-	using System.Collections;
+﻿using SpyGame;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-	public class Thinker : MonoBehaviour 
-	{
-		public Brain brain;
+public class Thinker : MonoBehaviour
+{
+    public Brain brain;
 
-		void Start () 
-		{
-			brain.Initialize (this);
-		}
+    public void Start()
+    {
+        brain.Initialize(this);
+    }
 
-		void FixedUpdate ()
-		{
-			brain.Think (this);
-		}
-
-	}
+    void FixedUpdate()
+    {
+        brain.Think(this);
+    }
+}
