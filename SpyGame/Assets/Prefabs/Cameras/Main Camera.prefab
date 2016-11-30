@@ -23,7 +23,10 @@ GameObject:
   - 92: {fileID: 92000011692073922}
   - 124: {fileID: 124000011371836664}
   - 81: {fileID: 81000012300775502}
+  - 114: {fileID: 114000011228603442}
   - 114: {fileID: 114000013273370912}
+  - 114: {fileID: 114000013196980164}
+  - 114: {fileID: 114000012001241364}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -52,8 +55,8 @@ Camera:
   m_GameObject: {fileID: 1000011388973344}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -92,6 +95,66 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011388973344}
   m_Enabled: 1
+--- !u!114 &114000011228603442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011388973344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc327ceb11bf63479b355ebf2ef37cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraFollowPlayer: {fileID: 114000013273370912}
+  _cameraShowDoor: {fileID: 114000013196980164}
+  _timeStamp: 0
+--- !u!114 &114000012001241364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011388973344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e2ce3492c27d045b348aa0c191de66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listeners:
+  - Name: 
+    eventListener: {fileID: 11400000, guid: 060a9b5e01a9cd84c808573904380958, type: 2}
+    source: {fileID: 0}
+    interactionMethod:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114000011228603442}
+          m_MethodName: ShowTheDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+--- !u!114 &114000013196980164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011388973344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54513eee916951a47a19f06ab300417c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxAngleTorsion: 0
+  _timeToReachDoor: 1
+  _timeToReachPlayer: 2
+  _timeWaiting: 5
 --- !u!114 &114000013273370912
 MonoBehaviour:
   m_ObjectHideFlags: 1
