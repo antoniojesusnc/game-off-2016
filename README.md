@@ -32,8 +32,8 @@ Move your character with AWSD, to Hack PC use The Space Bar
 # How to Build
 Just Open the project with Unity and click in File, build
 
-![alt text](https://github.com/antoniojesusnc/game-off-2016/Images/Image01.png)
-![alt text](https://github.com/antoniojesusnc/game-off-2016/Images/Image02.png)
+![alt text](https://raw.githubusercontent.com/antoniojesusnc/game-off-2016/master/Images/Image01.png)
+![alt text](https://raw.githubusercontent.com/antoniojesusnc/game-off-2016/master/Images/Image02.png)
 
 ## Credits
 #Developers
