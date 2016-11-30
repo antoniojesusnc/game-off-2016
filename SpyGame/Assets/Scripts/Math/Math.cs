@@ -19,8 +19,10 @@ namespace Utils
         /// <param name="point">
         /// Point to check if is inside Cone</param>
         /// <returns>true if inside, false otherwise</returns>
-        public static bool isInsideCone(Cone cone, Vector3 coneOrigin, Vector3 coneFacing, Vector3 point)
+        public static bool isInsideCone(Cone cone, Vector3 coneOrigin, Vector3 coneFacing, Vector3 point, bool ignoreY = true)
         {
+            if (ignoreY)
+                point.Set(point.x, coneOrigin.y, point.z);
             Vector3 directioPointToCone = ( point - coneOrigin );
             // if point if fardest than Cone range, false
             if (directioPointToCone.sqrMagnitude > cone.getLength() * cone.getLength())
