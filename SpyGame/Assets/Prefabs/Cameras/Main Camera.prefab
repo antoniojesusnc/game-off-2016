@@ -154,7 +154,7 @@ MonoBehaviour:
   _maxAngleTorsion: 0
   _timeToReachDoor: 1
   _timeToReachPlayer: 2
-  _timeWaiting: 5
+  _timeWaiting: 1
 --- !u!114 &114000013273370912
 MonoBehaviour:
   m_ObjectHideFlags: 1

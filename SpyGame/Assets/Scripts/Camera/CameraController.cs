@@ -47,9 +47,11 @@ namespace SpyGame
 
         public void FollowPlayer()
         {
+            _cameraFollowPlayer.ResetCameraInPlayer();
             _followingPlayer = true;
             _cameraFollowPlayer.SetEnable(true);
             _cameraShowDoor.SetEnable(false);
+
         }
     }
 }

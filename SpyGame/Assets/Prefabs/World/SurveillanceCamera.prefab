@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cone:
     _angle: 50
-    _length: 7
+    _length: 10
   _objetive: {fileID: 0}
   _onDetectPlayerEvent: {fileID: 11400000, guid: 6bee1efb41115c7409268ad65c5034b3,
     type: 2}

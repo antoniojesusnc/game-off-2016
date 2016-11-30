@@ -23,7 +23,25 @@ GLHF! <3
 
 ## The Game
 
-Developers
-* Antonio Jesus Narvaez
-* Christopher Ozdoba
+# Description
+The Spy has to infiltrate into different buildings, hack some info, and escape, all without being detected. He has to avoid enemies and cams. 
+
+# Controls
+Move your character with AWSD
+HackPC Using The Space Bar
+
+# How to Build
+Just Open the project with Unity and click in File, build
+
+![alt text](https://github.com/antoniojesusnc/game-off-2016/Images/Image01.png)
+![alt text](https://github.com/antoniojesusnc/game-off-2016/Images/Image02.png)
+
+## Credits
+#Developers
+* [Antonio Jesus Narvaez](https://github.com/antoniojesusnc)
+* [Christopher Ozdoba](https://github.com/ozdoba)
 * Carlos D'Agostino
+
+#Frameworks
+Using free versions of [Unity3D](http://unity3d.com/).
+

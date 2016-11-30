@@ -68,6 +68,12 @@ namespace SpyGame
             return Quaternion.Euler(_cameraAngle, 0, 0);
         } // CalulateStandardCameraRotation
 
+        public void ResetCameraInPlayer()
+        {
+            Vector3 result = _player.position - _camera.transform.forward * _cameraDefaultDistance;
+            transform.position = result + _cameraOffset;
+        }
+
         public Vector3 CalulateStandardCameraPosition(Vector3 relativeTo)
         {
             //Vector3 result = _player.transform.position - _camera.transform.forward * _cameraDefaultDistance;
