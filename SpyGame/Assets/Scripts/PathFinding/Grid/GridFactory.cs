@@ -12,6 +12,11 @@ public class GridFactory : MonoBehaviour
 
     Grid _grid;
 
+	void Start() 
+	{
+		CreateGrid();
+	}
+
     // because ExecuteInEditMode, Update is Call when something in the SceneChange
     public void Update()
     {
@@ -19,7 +24,6 @@ public class GridFactory : MonoBehaviour
         if (!canUpdateInEditorMode())
             return;
 
-        CreateGrid();
     } // Update
 
     // check that the Update can be done
@@ -71,6 +75,7 @@ public class GridFactory : MonoBehaviour
     /// </summary>
     void OnDrawGizmos()
     {
+		return;
         Gizmos.DrawWireCube(transform.position + Vector3.right*_gridContainer.x*0.5f + Vector3.forward*_gridContainer.y*0.5f, 
             new Vector3(_gridContainer.x, 1, _gridContainer.y));
         
