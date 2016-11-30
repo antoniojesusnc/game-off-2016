@@ -27,8 +27,7 @@ GLHF! <3
 The Spy has to infiltrate into different buildings, hack some info, and escape, all without being detected. He has to avoid enemies and cams. 
 
 # Controls
-Move your character with AWSD
-HackPC Using The Space Bar
+Move your character with AWSD, to Hack PC use The Space Bar
 
 # How to Build
 Just Open the project with Unity and click in File, build
@@ -40,7 +39,7 @@ Just Open the project with Unity and click in File, build
 #Developers
 * [Antonio Jesus Narvaez](https://github.com/antoniojesusnc)
 * [Christopher Ozdoba](https://github.com/ozdoba)
-* Carlos D'Agostino
+* Kuba Skowroński
 
 #Frameworks
 Using free versions of [Unity3D](http://unity3d.com/).
